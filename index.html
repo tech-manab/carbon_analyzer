@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint & Lifestyle Intelligence Analyzer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#030712',
+                            card: 'rgba(17, 24, 39, 0.7)',
+                            neonGreen: '#10b981',
+                            neonBlue: '#06b6d4',
+                            border: 'rgba(16, 185, 129, 0.2)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-cyber-dark text-white font-sans overflow-x-hidden antialiased selection:bg-cyber-neonGreen selection:text-black">
+
+<!-- Particles Background -->
+<div id="particles-js" class="fixed inset-0 pointer-events-none z-0"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot hidden md:block"></div>
+<div class="cursor-outline hidden md:block"></div>
+
+<!-- Navigation -->
+<nav class="fixed w-full z-50 glass-nav transition-all duration-300 py-4 px-8 top-0">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-2xl font-bold tracking-tighter flex items-center gap-2 cursor-pointer transition-transform hover:scale-105" onclick="window.scrollTo(0,0)">
+            <i class="fa-solid fa-leaf text-cyber-neonGreen"></i>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-neonGreen to-cyber-neonBlue">EcoSphere</span>
+        </div>
+        <div class="hidden md:flex gap-8 font-mono text-sm">
+            <a href="#landing" class="nav-link hover:text-cyber-neonGreen transition-colors">01. Home</a>
+            <a href="#analyzer" class="nav-link hover:text-cyber-neonBlue transition-colors">02. Analyzer</a>
+            <a href="#challenges" class="nav-link hover:text-cyber-neonGreen transition-colors">03. Challenges</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="relative z-10 w-full flex flex-col items-center pt-20">
+
+    <!-- 1. Landing Page -->
+    <section id="landing" class="min-h-[90vh] w-full flex flex-col justify-center items-center py-10 px-4 relative">
+        <div class="hero-content text-center max-w-4xl mx-auto flex flex-col items-center relative z-10">
+            <div class="inline-block px-4 py-1 mb-6 rounded-full glass-card border border-cyber-border text-cyber-neonGreen font-mono text-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                <i class="fa-solid fa-satellite-dish mr-2 animate-pulse"></i> Lifestyle Intelligence Active
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight select-none">
+                Track your life.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-neonGreen to-cyber-neonBlue drop-shadow-lg">Save the planet.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl font-light">
+                Analyze your footprint, decode your impact, and receive AI-driven actionable intelligence for a sustainable future.
+            </p>
+            <button onclick="document.getElementById('analyzer').scrollIntoView({behavior: 'smooth'})" class="cyber-button group relative px-8 py-4 bg-transparent overflow-hidden rounded-lg border border-cyber-neonGreen text-cyber-neonGreen font-mono font-bold tracking-widest uppercase transition-all hover:text-black">
+                <span class="relative z-10 flex items-center gap-3">
+                    Start Analysis <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </span>
+                <div class="absolute inset-0 bg-cyber-neonGreen translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
+            </button>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer opacity-50 hover:opacity-100 transition-opacity z-10" onclick="document.getElementById('analyzer').scrollIntoView({behavior: 'smooth'})">
+            <i class="fa-solid fa-chevron-down text-2xl text-cyber-neonBlue"></i>
+        </div>
+    </section>
+
+    <!-- 2. User Input Dashboard -->
+    <section id="analyzer" class="min-h-screen w-full py-24 px-4 bg-gradient-to-b from-transparent to-cyber-dark/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 text-center text-reveal">
+                <h2 class="text-4xl font-bold mb-4 font-mono">Data <span class="text-cyber-neonBlue">Ingestion</span></h2>
+                <p class="text-gray-400">Input your daily metrics to generate intelligence report</p>
+            </div>
+
+            <div class="glass-container p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8 relative overflow-hidden">
+                <!-- Background Glow -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-cyber-neonBlue/5 rounded-full blur-[100px] pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyber-neonGreen/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+                <!-- Transport -->
+                <div class="input-card group z-10">
+                    <div class="flex items-center gap-3 mb-6 text-cyber-neonBlue">
+                        <div class="w-10 h-10 rounded-full bg-cyber-neonBlue/10 flex items-center justify-center border border-cyber-neonBlue/30">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <h3 class="text-xl font-bold tracking-wide">Transportation</h3>
+                    </div>
+                    <label class="flex justify-between text-sm text-gray-400 mb-2">
+                        <span>Daily Travel Distance</span>
+                        <span class="text-cyber-neonBlue font-mono font-bold"><span id="distVal">20</span> km</span>
+                    </label>
+                    <input type="range" id="transportDist" min="0" max="150" value="20" class="cyber-slider w-full mb-8">
+                    
+                    <label class="block text-sm text-gray-400 mb-3">Primary Mode</label>
+                    <div class="grid grid-cols-4 gap-3">
+                        <button type="button" class="mode-btn" data-mode="bike" data-impact="0" title="Bicycle/Walk"><i class="fa-solid fa-bicycle"></i></button>
+                        <button type="button" class="mode-btn" data-mode="bus" data-impact="1.5" title="Bus"><i class="fa-solid fa-bus"></i></button>
+                        <button type="button" class="mode-btn" data-mode="train" data-impact="0.5" title="Train/Metro"><i class="fa-solid fa-train"></i></button>
+                        <button type="button" class="mode-btn active" data-mode="car" data-impact="3.5" title="Personal Car"><i class="fa-solid fa-car-side"></i></button>
+                    </div>
+                </div>
+
+                <!-- Electricity -->
+                <div class="input-card group z-10">
+                    <div class="flex items-center gap-3 mb-6 text-yellow-400">
+                        <div class="w-10 h-10 rounded-full bg-yellow-400/10 flex items-center justify-center border border-yellow-400/30">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold tracking-wide">Electricity Core</h3>
+                    </div>
+                    <label class="flex justify-between text-sm text-gray-400 mb-2">
+                        <span>Air Conditioning Usage</span>
+                        <span class="text-yellow-400 font-mono font-bold"><span id="acVal">4</span> hrs/day</span>
+                    </label>
+                    <input type="range" id="acUsage" min="0" max="24" value="4" class="cyber-slider w-full mb-8" style="--slider-color: #facc15;">
+                    
+                    <label class="flex justify-between text-sm text-gray-400 mb-2">
+                        <span>Screen / Device Time</span>
+                        <span class="text-yellow-400 font-mono font-bold"><span id="deviceVal">6</span> hrs/day</span>
+                    </label>
+                    <input type="range" id="deviceUsage" min="0" max="24" value="6" class="cyber-slider w-full" style="--slider-color: #facc15;">
+                </div>
+
+                <!-- Diet & Water -->
+                <div class="input-card group z-10">
+                    <div class="flex items-center gap-3 mb-6 text-cyber-neonGreen">
+                        <div class="w-10 h-10 rounded-full bg-cyber-neonGreen/10 flex items-center justify-center border border-cyber-neonGreen/30">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="text-xl font-bold tracking-wide">Nutrition & Water</h3>
+                    </div>
+                    
+                    <label class="block text-sm text-gray-400 mb-2">Primary Diet Type</label>
+                    <div class="relative mb-6">
+                        <select id="dietType" class="cyber-select w-full" style="--focus-border: #10b981;">
+                            <option value="veg">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="mixed" selected>Mixed (Occasional Meat)</option>
+                            <option value="meat">Heavy Meat Consuming</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-cyber-neonGreen">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+                    </div>
+
+                    <label class="block text-sm text-gray-400 mb-2">Processed/Fast Food Frequency</label>
+                    <div class="relative">
+                        <select id="fastFoodFreq" class="cyber-select w-full" style="--focus-border: #10b981;">
+                            <option value="low">Rarely</option>
+                            <option value="med" selected>2-3 times/week</option>
+                            <option value="high">Almost daily</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-cyber-neonGreen">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lifestyle & Shopping -->
+                <div class="input-card group z-10">
+                    <div class="flex items-center gap-3 mb-6 text-purple-400">
+                        <div class="w-10 h-10 rounded-full bg-purple-400/10 flex items-center justify-center border border-purple-400/30">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h3 class="text-xl font-bold tracking-wide">Lifestyle & Waste</h3>
+                    </div>
+                    
+                    <label class="block text-sm text-gray-400 mb-2">Shopping Frequency</label>
+                    <div class="relative mb-6">
+                        <select id="shoppingFreq" class="cyber-select w-full" style="--focus-border: #c084fc;">
+                            <option value="low">Needs only (Sustainable)</option>
+                            <option value="med" selected>Moderate Average</option>
+                            <option value="high">Frequent Buyer (Fast Fashion)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-purple-400">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+                    </div>
+
+                    <label class="block text-sm text-gray-400 mb-2">Plastic Usage Level</label>
+                     <div class="relative">
+                        <select id="plasticUsage" class="cyber-select w-full" style="--focus-border: #c084fc;">
+                            <option value="low">Minimal (Bring my own bags)</option>
+                            <option value="med" selected>Average (Try to reduce)</option>
+                            <option value="high">High (Single-use everything)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-purple-400">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center text-reveal">
+                <button id="analyzeBtn" class="cyber-button-primary px-12 py-5 text-lg font-bold w-full md:w-auto relative group overflow-hidden">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-microchip group-hover:rotate-180 transition-transform duration-500"></i> Compile Intelligence
+                    </span>
+                    <div class="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine z-0"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Loading Screen -->
+    <div id="loadingOverlay" class="fixed inset-0 z-[100] bg-cyber-dark/95 backdrop-blur-xl flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="flex flex-col items-center">
+            <div class="relative w-48 h-48 mb-8">
+                <svg class="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="46" fill="none" class="stroke-cyber-border" stroke-width="2"></circle>
+                    <circle cx="50" cy="50" r="46" fill="none" class="stroke-cyber-neonGreen" stroke-width="2" stroke-dasharray="289" stroke-dashoffset="200" stroke-linecap="round"></circle>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-cyber-neonGreen">
+                    <i class="fa-solid fa-fingerprint text-5xl animate-pulse"></i>
+                </div>
+            </div>
+            <h3 class="text-2xl font-mono text-white mb-2 tracking-widest uppercase">Processing Profile</h3>
+            <div class="w-72 h-1 bg-gray-800 rounded-full overflow-hidden mb-4">
+                <div id="loadingProgressBar" class="h-full bg-cyber-neonGreen w-0 shadow-[0_0_10px_#10b981]"></div>
+            </div>
+            <p id="loadingMsg" class="font-mono text-sm text-cyber-neonBlue h-6 animate-pulse">Initializing algorithms...</p>
+        </div>
+    </div>
+
+    <!-- 4. Results Dashboard -->
+    <section id="resultsSection" class="min-h-screen w-full py-24 px-4 hidden opacity-0 bg-cyber-dark relative">
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyber-neonGreen/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-cyber-border pb-6 gap-4">
+                <div>
+                    <h2 class="text-4xl font-bold font-mono text-white flex items-center gap-3">
+                        <i class="fa-solid fa-chart-line text-cyber-neonGreen"></i> Intelligence <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-neonGreen to-cyber-neonBlue">Report</span>
+                    </h2>
+                    <p class="text-gray-400 mt-2 font-mono text-sm">Comprehensive breakdown of your environmental telemetry.</p>
+                </div>
+                <button onclick="window.print()" class="glass-btn px-6 py-3 font-bold hover:text-cyber-neonGreen transition-colors flex items-center gap-2 group">
+                    <i class="fa-solid fa-print group-hover:scale-110 transition-transform"></i> Export PDF
+                </button>
+            </div>
+
+            <!-- Top Row: Scores -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Eco Score -->
+                <div class="glass-card p-6 flex flex-col items-center relative overflow-hidden group">
+                    <div class="text-center mb-6">
+                        <h3 class="text-gray-400 font-mono text-sm uppercase tracking-wider mb-1">Eco-Friendliness Score</h3>
+                        <p class="text-xs text-gray-500">Overall Sustainability</p>
+                    </div>
+                    <div class="relative w-48 h-48 flex justify-center items-center">
+                        <canvas id="ecoGauge"></canvas>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span id="ecoScoreText" class="text-5xl font-bold font-mono text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">0</span>
+                            <span class="text-xs text-cyber-neonGreen mt-1 font-mono">/ 100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footprint Size -->
+                <div class="glass-card p-6 flex flex-col items-center relative overflow-hidden">
+                    <div class="text-center mb-6">
+                        <h3 class="text-gray-400 font-mono text-sm uppercase tracking-wider mb-1">Estimated Footprint</h3>
+                        <p class="text-xs text-gray-500">Tons CO2e per year</p>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center justify-center">
+                        <div class="text-6xl font-bold text-cyber-neonBlue mb-2 drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]"><span id="co2TonsText">0.0</span></div>
+                        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-dark/50 border border-cyber-border text-xs">
+                            Avg is <span class="text-white">4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Level -->
+                <div class="glass-card p-6 flex flex-col items-center" id="impactLevelCard">
+                    <div class="text-center mb-6">
+                        <h3 class="text-gray-400 font-mono text-sm uppercase tracking-wider mb-1">Threat Assessment</h3>
+                        <p class="text-xs text-gray-500">Global Impact Level</p>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center justify-center text-center">
+                        <div id="impactIconWrapper" class="w-20 h-20 rounded-full flex items-center justify-center mb-4 text-4xl shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                            <i id="impactIcon" class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h4 id="impactText" class="text-2xl font-bold font-mono mb-2 uppercase tracking-wide">Unknown</h4>
+                        <p id="impactDesc" class="text-sm text-gray-400 px-2 line-clamp-3">Awaiting analysis...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Row: Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Emissions Polar Chart -->
+                <div class="glass-card p-6 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-bold font-mono border-l-4 border-cyber-neonBlue pl-3">Sector Breakdown</h3>
+                        <i class="fa-solid fa-chart-pie text-gray-500"></i>
+                    </div>
+                    <div class="relative flex-1 w-full flex justify-center items-center min-h-[300px]">
+                        <canvas id="emissionsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Benchmark Bar Chart -->
+                <div class="glass-card p-6 flex flex-col">
+                     <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-bold font-mono border-l-4 border-purple-500 pl-3">Global Benchmark</h3>
+                        <i class="fa-solid fa-globe text-gray-500"></i>
+                    </div>
+                    <div class="relative flex-1 w-full flex justify-center items-center min-h-[300px]">
+                        <canvas id="benchmarkChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggestions Engine -->
+            <div class="mb-8 mt-12 bg-cyber-dark/30 border border-cyber-border rounded-xl p-8 relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-64 h-64 bg-yellow-400/5 rounded-full blur-[80px]"></div>
+                <h3 class="text-2xl font-bold mb-8 font-mono flex items-center gap-3 text-white">
+                    <i class="fa-solid fa-bolt text-yellow-400 animate-pulse"></i> Tactical Suggestions
+                </h3>
+                <div id="suggestionsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                    <!-- Suggestions generated via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Eco Challenges -->
+    <section id="challenges" class="min-h-screen w-full py-24 px-4 bg-gradient-to-t from-transparent to-cyber-dark/80 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 text-center text-reveal">
+                <h2 class="text-4xl font-bold mb-4 font-mono">Operations & <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-cyber-neonGreen">Missions</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Engage in weekly challenges to reduce your carbon footprint and elevate your sustainability ranking.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Mission 1 -->
+                <div class="challenge-card glass-card group cursor-pointer relative overflow-hidden" onclick="toggleChallenge(this)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black/40 z-0"></div>
+                    <div class="p-6 relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-cyber-dark border border-gray-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🚶</div>
+                            <div class="check-indicator w-7 h-7 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all bg-cyber-dark">
+                                <i class="fa-solid fa-check text-xs opacity-0"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Zero Emission Transit</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Commute solely by walking or cycling for an entire day.</p>
+                        <div class="inline-block px-3 py-1 rounded bg-cyber-neonGreen/10 border border-cyber-neonGreen/30 text-cyber-neonGreen font-mono text-xs font-bold shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                            +15 XP
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 2 -->
+                <div class="challenge-card glass-card group cursor-pointer relative overflow-hidden" onclick="toggleChallenge(this)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black/40 z-0"></div>
+                    <div class="p-6 relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-cyber-dark border border-gray-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🥤</div>
+                            <div class="check-indicator w-7 h-7 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all bg-cyber-dark">
+                                <i class="fa-solid fa-check text-xs opacity-0"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Plastic Purge</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Eliminate all single-use plastics from your routine today.</p>
+                        <div class="inline-block px-3 py-1 rounded border text-cyber-neonBlue border-cyber-neonBlue/30 bg-cyber-neonBlue/10 font-mono text-xs font-bold">
+                            +20 XP
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 3 -->
+                <div class="challenge-card glass-card group cursor-pointer relative overflow-hidden" onclick="toggleChallenge(this)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black/40 z-0"></div>
+                    <div class="p-6 relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-cyber-dark border border-gray-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">⚡</div>
+                            <div class="check-indicator w-7 h-7 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all bg-cyber-dark">
+                                <i class="fa-solid fa-check text-xs opacity-0"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Grid Disconnect</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Disconnect non-essential power source for a 4 hour window.</p>
+                        <div class="inline-block px-3 py-1 rounded border text-yellow-400 border-yellow-400/30 bg-yellow-400/10 font-mono text-xs font-bold">
+                            +10 XP
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 4 -->
+                <div class="challenge-card glass-card group cursor-pointer relative overflow-hidden" onclick="toggleChallenge(this)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black/40 z-0"></div>
+                    <div class="p-6 relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-cyber-dark border border-gray-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🥗</div>
+                            <div class="check-indicator w-7 h-7 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all bg-cyber-dark">
+                                <i class="fa-solid fa-check text-xs opacity-0"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Plant Protocol</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Consume entirely plant-based nutrition for the next 24 hours.</p>
+                        <div class="inline-block px-3 py-1 rounded border text-purple-400 border-purple-400/30 bg-purple-400/10 font-mono text-xs font-bold">
+                            +25 XP
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-container p-8 max-w-2xl mx-auto flex items-center gap-6 relative overflow-hidden">
+                <div class="absolute right-0 top-0 h-full w-1 bg-cyber-neonGreen shadow-[0_0_20px_#10b981]"></div>
+                <div class="w-20 h-20 rounded-full border-4 border-gray-800 flex items-center justify-center shrink-0 relative">
+                    <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(16,185,129,0.2)" stroke-width="8"></circle>
+                        <circle id="missionCircle" cx="50" cy="50" r="46" fill="none" stroke="#10b981" stroke-width="8" stroke-dasharray="289" stroke-dashoffset="289" stroke-linecap="round" style="transition: stroke-dashoffset 0.5s ease;"></circle>
+                    </svg>
+                    <span class="font-mono font-bold text-xl text-white"><span id="challengeCount">0</span>/4</span>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-1">Weekly Objective Status</h3>
+                    <p class="text-gray-400 text-sm">Complete missions to upgrade your operative rank and earn sustainability badges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="w-full py-8 text-center bg-black/50 backdrop-blur-md text-sm border-t border-gray-900 font-mono relative z-10">
+    <div class="flex justify-center items-center gap-2 mb-2 text-cyber-neonGreen">
+        <i class="fa-solid fa-leaf"></i> <span class="font-bold tracking-widest uppercase">EcoSphere Systems</span>
+    </div>
+    <p class="text-gray-600">Carbon Footprint Intelligence Analyzer &copy; 2026</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
