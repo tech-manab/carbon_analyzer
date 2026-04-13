@@ -129,11 +129,10 @@ function launchAnalysis() {
     overlay.classList.remove('pointer-events-none', 'opacity-0');
 
     // Reset progress bar for re-runs
-    const progressBar = document.getElementById('loadingProgressBar');
-    gsap.set(progressBar, { width: '0%' });
+    const progress = document.getElementById('loadingProgressBar');
+    gsap.set(progress, { width: '0%' });
 
     // Animate Progress Bar
-    const progress = document.getElementById('loadingProgressBar');
     const msg = document.getElementById('loadingMsg');
     
     const messages = [
@@ -300,7 +299,7 @@ function renderCharts(breakdown, userTotalStr) {
     if(chartsInstances.gauge) chartsInstances.gauge.destroy();
 
     // 0. Eco Score Gauge (Doughnut)
-    const ecoScore = parseInt(document.getElementById('ecoScoreText').innerText) || 0;
+    const ecoScore = parseInt(document.getElementById('ecoScoreText').innerText, 10) || 0;
     const ctxGauge = document.getElementById('ecoGauge').getContext('2d');
     const gaugeColor = ecoScore >= 80 ? '#10b981' : ecoScore >= 50 ? '#facc15' : '#ef4444';
     chartsInstances.gauge = new Chart(ctxGauge, {
