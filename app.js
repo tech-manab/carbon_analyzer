@@ -128,8 +128,11 @@ function launchAnalysis() {
     const overlay = document.getElementById('loadingOverlay');
     overlay.classList.remove('pointer-events-none', 'opacity-0');
 
-    // Animate Progress Bar
+    // Reset progress bar for re-runs
     const progress = document.getElementById('loadingProgressBar');
+    gsap.set(progress, { width: '0%' });
+
+    // Animate Progress Bar
     const msg = document.getElementById('loadingMsg');
     
     const messages = [
@@ -158,6 +161,7 @@ function launchAnalysis() {
             overlay.classList.add('opacity-0', 'pointer-events-none');
             overlay.style.transitionDelay = '0.5s';
             btn.innerHTML = '<i class="fa-solid fa-check"></i> Analysis Complete';
+            btn.disabled = false;
             
             setTimeout(() => {
                 overlay.style.transitionDelay = '0s'; // reset
@@ -292,6 +296,31 @@ function renderCharts(breakdown, userTotalStr) {
 
     if(chartsInstances.emissions) chartsInstances.emissions.destroy();
     if(chartsInstances.benchmark) chartsInstances.benchmark.destroy();
+    if(chartsInstances.gauge) chartsInstances.gauge.destroy();
+
+    // 0. Eco Score Gauge (Doughnut)
+    const ecoScore = parseInt(document.getElementById('ecoScoreText').innerText, 10) || 0;
+    const ctxGauge = document.getElementById('ecoGauge').getContext('2d');
+    const gaugeColor = ecoScore >= 80 ? '#10b981' : ecoScore >= 50 ? '#facc15' : '#ef4444';
+    chartsInstances.gauge = new Chart(ctxGauge, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [ecoScore, 100 - ecoScore],
+                backgroundColor: [gaugeColor, 'rgba(255,255,255,0.05)'],
+                borderColor: [gaugeColor, 'transparent'],
+                borderWidth: 2,
+                circumference: 270,
+                rotation: 225
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutout: '80%',
+            plugins: { legend: { display: false }, tooltip: { enabled: false } }
+        }
+    });
 
     // 1. Emissions Polar Chart
     const ctxPolar = document.getElementById('emissionsChart').getContext('2d');
